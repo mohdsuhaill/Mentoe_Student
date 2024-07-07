@@ -131,7 +131,7 @@ export const getMentors = async(req,res) => {
         }
         res.status(200).json({message:"mentors",mentor:mentor});
     }catch(arr){
-        console.log(error);
+        // console.log(error);
         res.status(404).json('error in getting mentor');
     }
     
