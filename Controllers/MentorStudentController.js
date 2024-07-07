@@ -11,7 +11,8 @@ export const createMentor = async(req,res) =>{
             res.status(500).json({message:"Mentor Not Created"});
         }
     }
-   
+    
+    
 }
 
 export const createStudent = async(req,res) =>{
