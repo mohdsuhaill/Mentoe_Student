@@ -8,11 +8,11 @@ export const createMentor = async(req,res) =>{
         res.status(200).json({message:"Mentor Create Successfully",data:mentor});
     }catch(error){
         if(error){
-            res.status(500).json({message:"Mentor Not Created"});
+            res.status(404).json({message:"Mentor Not Created"});
         }
     }
     
-    
+
 }
 
 export const createStudent = async(req,res) =>{
@@ -55,7 +55,7 @@ export const addStudents = async(req,res,next) =>{
         res.status(200).json({data:selectedMentor,NotAdded:already})
     }catch(error){
         console.log(error)
-        res.status(500).json({data:"erro in operation"})
+        res.status(404).json({data:"erro in operation"})
     }
     
 }
@@ -103,7 +103,7 @@ export const assignMentor = async(req,res) =>{
 
         res.status(200).json({student:stud,mentor:mentor});
     }catch(error){
-        res.status(500).json({error:err,message:"But data updated successfully"});
+        res.status(404).json({error:err,message:"But data updated successfully"});
         console.log(error)
     }
     
@@ -113,12 +113,12 @@ export const getStudents = async(req,res) => {
     try{
         const students = await Student.find({},{_id:1,studentName:1,studentEmail:1,course:1,mentor:1}).populate('mentor');
         if(!students){
-            res.status(500).json({message:"error in students data"});
+            res.status(404).json({message:"error in students data"});
         }
         res.status(200).json({message:"students",Students:students});
     }catch(error){
         console.log(error);
-        res.status(500).json('error in getting students');
+        res.status(404).json('error in getting students');
     }
     
 }
@@ -132,7 +132,7 @@ export const getMentors = async(req,res) => {
         res.status(200).json({message:"mentors",mentor:mentor});
     }catch(arr){
         console.log(error);
-        res.status(500).json('error in getting mentor');
+        res.status(404).json('error in getting mentor');
     }
     
 }
@@ -147,7 +147,7 @@ export const getPreviousMentors = async(req,res) =>{
 
       res.status(200).json({data:student})
     }catch(error){
-     res.status(500).json({message:"error",})
+     res.status(404).json({message:"error",})
     }
 }
 
@@ -161,6 +161,6 @@ export const getStudentsOfMentor = async(req,res) =>{
 
        res.status(200).json({data:result});
     }catch(error){
-       res.status(500).json({message:"Could not get the Students from the Mentor ID"})
+       res.status(404).json({message:"Could not get the Students from the Mentor ID"})
     }
 }
