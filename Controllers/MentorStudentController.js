@@ -67,7 +67,7 @@ export const assignMentor = async(req,res) =>{
         const stud = await Student.findById(studId);
       const oldMentor = await Mentor.findById(stud.mentor[0]);
       if(oldMentor){
-        console.log(oldMentor);
+        // console.log(oldMentor);
         oldMentor.students.pull(studId)
         oldMentor.save();
       }
@@ -91,7 +91,7 @@ export const assignMentor = async(req,res) =>{
         } 
        
         await stud.save();
-        console.log(mentor.students)
+        // console.log(mentor.students)
         if(mentor.students.includes(studId)){
             mentor.students.pull(studId);
             mentor.students.push(studId);
@@ -104,7 +104,7 @@ export const assignMentor = async(req,res) =>{
         res.status(200).json({student:stud,mentor:mentor});
     }catch(error){
         res.status(404).json({error:err,message:"But data updated successfully"});
-        console.log(error)
+        // console.log(error)
     }
     
 }
