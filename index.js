@@ -11,14 +11,14 @@ app.use(express.json())
 
 connectDB();
 
-const port = 4000
+
 
 app.use('/api',router)
 
 app.get('/',(req,res)=>{
-    res.status(200).send("Running Successfully",port)
+    res.status(200).send("Running Successfully")
 })
 
 app.listen(process.env.PORT,()=>{
-    console.log("App is running in the port",process.env.PORT);
+    console.log("App is running in the port")
 })
