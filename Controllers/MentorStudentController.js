@@ -1,5 +1,7 @@
 import { Mentor,Student } from "../Models/MySchema.js";
 
+
+// ApI create Mentor
 export const createMentor = async(req,res) =>{
     try{
         const mentor = new Mentor(req.body)
@@ -13,7 +15,7 @@ export const createMentor = async(req,res) =>{
     }
    
 }
-
+// API Create Student
 export const createStudent = async(req,res) =>{
     try{
         const student = new Student(req.body)
@@ -28,6 +30,7 @@ export const createStudent = async(req,res) =>{
    
 }
 
+// assign Student Mentor
 export const addStudents = async(req,res,next) =>{
     try{
         const mentorId = req.params.id;
@@ -58,7 +61,7 @@ export const addStudents = async(req,res,next) =>{
     }
     
 }
-
+// assign Memtor to student
 export const assignMentor = async(req,res) =>{
     try{
         const studId = req.params.id;
@@ -108,6 +111,8 @@ export const assignMentor = async(req,res) =>{
     
 }
 
+// get student 
+
 export const getStudents = async(req,res) => {
     try{
         const students = await Student.find({},{_id:1,studentName:1,studentEmail:1,course:1,mentor:1}).populate('mentor');
@@ -122,6 +127,7 @@ export const getStudents = async(req,res) => {
     
 }
 
+// get mentor
 export const getMentors = async(req,res) => {
     try{
         const mentor = await Mentor.find().populate('students','-previousMentor');
@@ -136,6 +142,7 @@ export const getMentors = async(req,res) => {
     
 }
 
+// get previous mentor
 export const getPreviousMentors = async(req,res) =>{
     try{
       const studId = req.params.id;
@@ -150,6 +157,7 @@ export const getPreviousMentors = async(req,res) =>{
     }
 }
 
+// getStudents mentor
 export const getStudentsOfMentor = async(req,res) =>{
     try{
        const mentorId = req.params.id;
